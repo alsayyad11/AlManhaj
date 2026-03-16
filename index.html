@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="notranslate" translate="no">المنهاج الإسلامي</title>
+    <link rel="icon" href="images/icon.ico" />
+    <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=thuluth-decorated" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header" id="header">
+      <div class="container">
+        <div class="logo notranslate" translate="no">المنهاج</div>
+        <ul id="nav-menu">
+          <li>
+            <input type="checkbox" id="dark-mode" class="theme-mode" />
+            <label for="dark-mode" class="theme-toggle"><div class="theme-toggle-circle"></div></label>
+          </li>
+          <li data-filter="main">الرئيسية</li>
+          <li data-filter="pray">أوقات الصلاة</li>
+          <li data-filter="muhasaba">محاسبة النفس</li>
+          <li data-filter="tasbeeh">مسبحة</li>
+          <li data-filter="quran">القرآن</li>
+          <li data-filter="azkar">أذكار اليوم</li>
+          <li data-filter="huson">حصون المسلم</li>
+          <li data-filter="hadith">أحاديث</li>
+          <li data-filter="podcast">بودكاست</li>
+          <li data-filter="lectures">محاضرات</li>
+          <li data-filter="books">كتب</li>
+          <li data-filter="footer" id="nav-contact">تواصل</li>
+        </ul>
+        <div class="bars" id="menu-bars"><i class="fas fa-bars"></i></div>
+      </div>
+    </header>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="main page-section" id="main-section">
+      <div class="hero-slideshow" id="hero-slideshow">
+        <div class="hero-slide active" style="background-image:url('./images/hero/1.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/2.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/3.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/4.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/5.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/6.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/7.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/8.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/9.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('./images/hero/10.jpg')"></div>
+      </div>
+      <div class="main-overlay"></div>
+      <canvas id="hero-stars"></canvas>
+      <div class="hero-star-veil"></div>
+      <div id="hero-dark-particles"></div>
+      <div id="hero-lights"></div>
+      <div class="container">
+        <div class="title">
+          <div class="hero-eyebrow">
+            <div class="hero-eyebrow-line"></div>
+            <span>بسم الله الرحمن الرحيم</span>
+            <div class="hero-eyebrow-line hero-eyebrow-line--rev"></div>
+          </div>
+          <h2>مرحبًا بك في<br />موقع <em>المنهاج</em> الإسلامي</h2>
+          <p class="hero-sub">منصتك الإسلامية الشاملة للقرآن الكريم والأحاديث النبوية الشريفة والمحاضرات الدينية وأوقات الصلاة</p>
+          <div class="hero-buttons">
+            <button class="btn-gold" id="explore-btn">ابدأ التصفح <i class="fas fa-arrow-left"></i></button>
+            <button class="btn-ghost" id="quran-btn">القرآن الكريم <i class="fas fa-book-open"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint"><div class="scroll-line"></div><span>تصفح</span></div>
+    </section>
+
+    <!-- ═══ STATS BAR (slim strip after hero) ═══ -->
+    <div class="hero-stats-bar">
+      <div class="container">
+        <div class="hero-stat"><span class="hero-stat-num">300</span><span class="hero-stat-sep">|</span><span class="hero-stat-label">حديث نبوي</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num">114</span><span class="hero-stat-sep">|</span><span class="hero-stat-label">سورة قرآنية</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num">8</span><span class="hero-stat-sep">|</span><span class="hero-stat-label">سلاسل محاضرات</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num">11</span><span class="hero-stat-sep">|</span><span class="hero-stat-label">ذكر في المسبحة</span></div>
+      </div>
+    </div>
+
+    <!-- ═══ PRAYER TIMES ═══ -->
+    <section class="pray page-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>مواعيد يومية</span></div><h3>أوقات الصلاة</h3></div>
+      <div class="container">
+        <div class="pray-location-bar reveal">
+          <div class="pray-location-glow"></div>
+          <div class="pray-location-inner">
+            <div class="pray-location-default">
+              <i class="fas fa-map-marker-alt"></i>
+              <span id="pray-location-label">المنصورة، مصر</span>
+            </div>
+            <button class="pray-change-btn" id="pray-change-btn">
+              <i class="fas fa-sliders-h"></i> تغيير الموقع
+            </button>
+          </div>
+        </div>
+        <div class="pray-selectors reveal" id="pray-selectors" style="display:none;">
+          <div class="pray-select-wrap"><i class="fas fa-globe pray-select-icon"></i><select id="selected_country"><option value="#" selected>اختر الدولة</option></select></div>
+          <div class="pray-select-wrap"><i class="fas fa-map-marker-alt pray-select-icon"></i><select id="selected_state"><option value="#" selected>اختر المنطقة</option></select></div>
+        </div>
+        <div class="pray-cards-grid" id="pray-cards-grid"></div>
+      </div>
+    </section>
+
+    <!-- ═══ MUHASABA ═══ -->
+    <section class="muhasaba-section page-section" id="muhasaba-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>محاسبة النفس</span></div><h3>أسئلة المحاسبة اليومية</h3></div>
+      <div class="container">
+        <p class="muhasaba-intro reveal">حاسب نفسك قبل أن تُحاسَب — اجلس مع نفسك كل يوم وتأمل هذه الأسئلة</p>
+        <div class="muhasaba-flashcard-wrap reveal">
+          <div class="flashcard-scene" id="flashcard-scene">
+            <div class="flashcard" id="flashcard">
+              <div class="flashcard-front">
+                <div class="flashcard-q-icon"><i class="fas fa-heart"></i></div>
+                <div class="flashcard-q-num" id="fc-num">١ / ١٥</div>
+                <div class="flashcard-q-text" id="fc-question">هل أديت صلواتك الخمس في أوقاتها اليوم؟</div>
+                <div class="flashcard-hint"><i class="fas fa-sync-alt"></i> <span id="fc-cta">اقلب لتعرف أكثر</span></div>
+              </div>
+              <div class="flashcard-back">
+                <div class="flashcard-back-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="flashcard-back-title">للتأمل</div>
+                <div class="flashcard-back-text" id="fc-reflection"></div>
+                <div class="flashcard-hint"><i class="fas fa-sync-alt"></i> اقلب للسؤال</div>
+              </div>
+            </div>
+          </div>
+          <div class="flashcard-controls">
+            <button class="fc-btn fc-prev" id="fc-prev"><i class="fas fa-chevron-right"></i></button>
+            <div class="fc-progress-dots" id="fc-dots"></div>
+            <button class="fc-btn fc-next" id="fc-next"><i class="fas fa-chevron-left"></i></button>
+          </div>
+          <div class="flashcard-progress-bar-wrap">
+            <div class="flashcard-progress-bar"><div class="flashcard-progress-fill" id="fc-progress"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TASBEEH ═══ -->
+    <section class="tasbeeh page-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>اذكر الله</span></div><h3>المسبحة الإلكترونية</h3></div>
+      <div class="container">
+        <div class="tasbeeh-wrapper">
+          <div class="dhikr-pills reveal" id="dhikr-pills"></div>
+          <!-- Side-by-side layout: dhikr info LEFT + counter button RIGHT -->
+          <div class="tasbeeh-main-row reveal">
+            <div class="tasbeeh-left">
+              <div class="dhikr-display"><div id="dhikr-text" class="notranslate" translate="no"></div><div id="dhikr-reward"></div></div>
+              <div class="tasbeeh-progress-wrap">
+                <div class="tasbeeh-progress-bar"><div class="tasbeeh-progress-fill" id="tasbeeh-progress"></div></div>
+                <span class="tasbeeh-target-label" id="tasbeeh-target-label">0 / 33</span>
+              </div>
+              <div class="tasbeeh-done" id="tasbeeh-done"><i class="fas fa-check-circle"></i> أحسنت! أتممت الذكر</div>
+              <button class="tasbeeh-reset reveal" id="tasbeeh-reset"><i class="fas fa-redo-alt"></i> إعادة</button>
+            </div>
+            <div class="tasbeeh-right">
+              <div class="tasbeeh-circle-wrap">
+                <svg class="tasbeeh-beads" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="160" cy="160" r="130" fill="none" stroke="rgba(184,146,42,0.15)" stroke-width="2" stroke-dasharray="5 10"/>
+                  <g id="beads-group"></g>
+                </svg>
+                <button class="tasbeeh-btn" id="tasbeeh-btn">
+                  <span class="tasbeeh-count" id="tasbeeh-count">0</span>
+                  <span class="tasbeeh-tap">اضغط</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QURAN ═══ -->
+    <section class="quran page-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>كتاب الله</span></div><h3>القرآن الكريم</h3></div>
+      <div class="container"><div class="surahContainer reveal" id="surahContainer"></div></div>
+    </section>
+
+    <!-- ═══ AZKAR MORNING / EVENING ═══ -->
+    <section class="azkar-section page-section" id="azkar-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>تحصين اليوم</span></div><h3 id="azkar-title">أذكار الصباح</h3></div>
+      <div class="container">
+        <div class="azkar-toggle-wrap reveal">
+          <button class="azkar-toggle-btn active" id="btn-sabah" onclick="switchAzkar('sabah')"><i class="fas fa-sun"></i> الصباح</button>
+          <button class="azkar-toggle-btn" id="btn-masa" onclick="switchAzkar('masa')"><i class="fas fa-moon"></i> المساء</button>
+        </div>
+        <div class="azkar-grid" id="azkar-grid"></div>
+      </div>
+    </section>
+
+    <!-- ═══ HUSON AL-MUSLIM ═══ -->
+    <section class="huson-section page-section" id="huson-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>أدعية وأذكار</span></div><h3>حصون المسلم</h3></div>
+      <div class="container">
+        <div class="huson-cats reveal" id="huson-cats"></div>
+        <div class="huson-content" id="huson-content">
+          <div class="huson-placeholder reveal">
+            <i class="fas fa-hand-holding-heart"></i>
+            <p>اختر نوع الذكر من الأعلى</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ HADITH ═══ -->
+    <section class="hadith page-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>من السنة النبوية</span></div><h3>أحاديث نبوية شريفة</h3></div>
+      <div class="container">
+        <div class="hadith-card reveal"><div class="hadith-quote-icon">❝</div><div class="hadithContainer"><div class="loading-dots"><span></span><span></span><span></span></div></div></div>
+        <div class="hadith-nav reveal">
+          <button class="hadith-btn prev"><i class="fas fa-chevron-right"></i> السابق</button>
+          <div class="hadith-number">1 / 300</div>
+          <button class="hadith-btn next">التالي <i class="fas fa-chevron-left"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PODCASTS ═══ -->
+    <section class="podcast-section page-section" id="podcast-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal">
+        <div class="section-eyebrow"><span>استمع وتفكّر</span></div>
+        <h3>بودكاست ديني مختار</h3>
+      </div>
+      <div class="container">
+        <div class="podcast-grid">
+          <div class="podcast-card reveal">
+            <div class="podcast-cover podcast-cover--img">
+              <img src="./images/fahem.jpg" alt="فاهم بودكاست" loading="lazy" class="podcast-img"/>
+              <div class="podcast-img-overlay"></div>
+              <div class="podcast-cover-waves"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="podcast-platform-badge"><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="podcast-body">
+              <h4 class="podcast-title">فاهم</h4>
+              <p class="podcast-desc">بودكاست يناقش قضايا الإيمان والحياة بأسلوب شبابي فكري عميق يلامس القلب والعقل.</p>
+              <a href="https://www.youtube.com/@Fahem.Podcast" target="_blank" class="podcast-btn"><i class="fab fa-youtube"></i> استمع الآن</a>
+            </div>
+          </div>
+          <div class="podcast-card reveal" style="transition-delay:80ms">
+            <div class="podcast-cover podcast-cover--img">
+              <img src="./images/waie.jpg" alt="وعي بودكاست" loading="lazy" class="podcast-img"/>
+              <div class="podcast-img-overlay"></div>
+              <div class="podcast-cover-waves"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="podcast-platform-badge"><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="podcast-body">
+              <h4 class="podcast-title">وعي</h4>
+              <p class="podcast-desc">محتوى يبني الوعي الإسلامي الحقيقي ويربط المسلم بدينه وبواقعه بصورة متوازنة.</p>
+              <a href="https://www.youtube.com/@Waie" target="_blank" class="podcast-btn"><i class="fab fa-youtube"></i> استمع الآن</a>
+            </div>
+          </div>
+          <div class="podcast-card reveal" style="transition-delay:160ms">
+            <div class="podcast-cover podcast-cover--img">
+              <img src="./images/moshkla.jpg" alt="إيه المشكلة" loading="lazy" class="podcast-img"/>
+              <div class="podcast-img-overlay"></div>
+              <div class="podcast-cover-waves"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="podcast-platform-badge"><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="podcast-body">
+              <h4 class="podcast-title">إيه المشكلة</h4>
+              <p class="podcast-desc">بودكاست يطرح إشكاليات الشباب المسلم ويعالجها بصراحة وعلم مع ضيوف متنوعين.</p>
+              <a href="https://www.youtube.com/@Eh_El_Moshkla" target="_blank" class="podcast-btn"><i class="fab fa-youtube"></i> استمع الآن</a>
+            </div>
+          </div>
+          <div class="podcast-card reveal" style="transition-delay:240ms">
+            <div class="podcast-cover podcast-cover--img">
+              <img src="./images/aya-hikaya.jpg" alt="آية وحكاية" loading="lazy" class="podcast-img"/>
+              <div class="podcast-img-overlay"></div>
+              <div class="podcast-cover-waves"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="podcast-platform-badge"><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="podcast-body">
+              <h4 class="podcast-title">آية وحكاية</h4>
+              <p class="podcast-desc">رحلة مع آيات القرآن الكريم تكشف قصصها وحكمها وأثرها في النفس والحياة.</p>
+              <a href="https://youtube.com/playlist?list=PLFkuO76ICjPmXSX0AOmy60e39KmeRD2Rt" target="_blank" class="podcast-btn"><i class="fab fa-youtube"></i> استمع الآن</a>
+            </div>
+          </div>
+          <div class="podcast-card reveal" style="transition-delay:320ms">
+            <div class="podcast-cover podcast-cover--img">
+              <img src="./images/saer.jpg" alt="سائر" loading="lazy" class="podcast-img"/>
+              <div class="podcast-img-overlay"></div>
+              <div class="podcast-cover-waves"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="podcast-platform-badge"><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="podcast-body">
+              <h4 class="podcast-title">سائر</h4>
+              <p class="podcast-desc">بودكاست يرافقك في رحلتك نحو الله، ويُذكّرك بمعنى السير إليه خطوة بخطوة.</p>
+              <a href="https://youtube.com/playlist?list=PLm_fS2m74uWmWVlHOXi1tzwGXb52j4Gjz" target="_blank" class="podcast-btn"><i class="fab fa-youtube"></i> استمع الآن</a>
+            </div>
+          </div>
+          <div class="podcast-card reveal" style="transition-delay:400ms">
+            <div class="podcast-cover podcast-cover--img">
+              <img src="./images/kaif-tareeq.jpg" alt="كيف الطريق" loading="lazy" class="podcast-img"/>
+              <div class="podcast-img-overlay"></div>
+              <div class="podcast-cover-waves"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="podcast-platform-badge"><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="podcast-body">
+              <h4 class="podcast-title">كيف الطريق</h4>
+              <p class="podcast-desc">مساعدة عملية لكل من يبحث عن الطريق إلى الله ويريد أن يبدأ من حيث هو.</p>
+              <a href="https://youtube.com/playlist?list=PLVPp4tYPys9MggYMBn8VeeclyPXWvv-g-" target="_blank" class="podcast-btn"><i class="fab fa-youtube"></i> استمع الآن</a>
+            </div>
+          </div>
+          <div class="podcast-card reveal" style="transition-delay:480ms">
+            <div class="podcast-cover podcast-cover--img">
+              <img src="./images/estraha.jpg" alt="إستراحة" loading="lazy" class="podcast-img"/>
+              <div class="podcast-img-overlay"></div>
+              <div class="podcast-cover-waves"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="podcast-platform-badge"><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="podcast-body">
+              <h4 class="podcast-title">إستراحة</h4>
+              <p class="podcast-desc">لحظة هدوء وتأمل — محادثات روحانية هادئة تُريح القلب وتُجدد الصلة بالله.</p>
+              <a href="https://youtube.com/playlist?list=PLJW_gn0In1bvilbI8scCrIRtmFyvSvOIk" target="_blank" class="podcast-btn"><i class="fab fa-youtube"></i> استمع الآن</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ LECTURES ═══ -->
+    <section class="lectures page-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>علم نافع</span></div><h3>محاضرات مختارة</h3></div>
+      <div class="container">
+        <div class="lectures-grid">
+          <a href="https://www.youtube.com/watch?v=VR1xbVL2Pnw&list=PL1i_D1Vw3d5OOCuGDrC-t3cBIrSmYRAsg" target="_blank" class="lec-link reveal"><div class="lec-card"><div class="lec-img-wrap"><img src="./images/9.jpg" alt="" loading="lazy"/><div class="lec-play"><i class="fab fa-youtube"></i></div><div class="lec-tag">عقيدة</div></div><div class="lec-body"><h4>سلسلة شرح كتاب أصول الإيمان</h4><p>فضيلة الشيخ علاء حامد</p></div></div></a>
+          <a href="https://www.youtube.com/watch?v=6eIZRH_FI4s&list=PLSUcSqxe9RhzbP2F4xTE9GCrIUUEuFJoa" target="_blank" class="lec-link reveal"><div class="lec-card"><div class="lec-img-wrap"><img src="./images/7.jpg" alt="" loading="lazy"/><div class="lec-play"><i class="fab fa-youtube"></i></div><div class="lec-tag">صلاة</div></div><div class="lec-body"><h4>سلسلة رعاية الصلاة</h4><p>فضيلة الشيخ سمير مصطفى</p></div></div></a>
+          <a href="https://www.youtube.com/watch?v=KjXHa_0v3Xs&list=PLVPp4tYPys9NKVw-_6itEaxQnK32lKrl0" target="_blank" class="lec-link reveal"><div class="lec-card"><div class="lec-img-wrap"><img src="./images/13.jpg" alt="" loading="lazy"/><div class="lec-play"><i class="fab fa-youtube"></i></div><div class="lec-tag">توحيد</div></div><div class="lec-body"><h4>سلسلة إنه الله</h4><p>فضيلة الشيخ حازم شومان</p></div></div></a>
+          <a href="https://www.youtube.com/watch?v=Mq84UmqumaM&list=PL1i_D1Vw3d5NYUb87ULvvfMxV3yqWliBd" target="_blank" class="lec-link reveal"><div class="lec-card"><div class="lec-img-wrap"><img src="./images/16.jpg" alt="" loading="lazy"/><div class="lec-play"><i class="fab fa-youtube"></i></div><div class="lec-tag">تزكية</div></div><div class="lec-body"><h4>سلسلة أساسيات الطريق إلى الله</h4><p>فضيلة الشيخ علاء حامد</p></div></div></a>
+          <a href="https://www.youtube.com/watch?v=FdXl6jjCxP4&list=PL1i_D1Vw3d5P5Q6IHHW22JHrnLCwm60Bn" target="_blank" class="lec-link reveal"><div class="lec-card"><div class="lec-img-wrap"><img src="./images/9.jpg" alt="" loading="lazy"/><div class="lec-play"><i class="fab fa-youtube"></i></div><div class="lec-tag">فقه</div></div><div class="lec-body"><h4>سلسلة شرح كتاب الفقه الميسر</h4><p>فضيلة الشيخ علاء حامد</p></div></div></a>
+          <a href="https://www.youtube.com/watch?v=48yJYcD_9X0&list=PLx3Fh1kiMbrcOUYqEcLnNSmxVhIeKQexC" target="_blank" class="lec-link reveal"><div class="lec-card"><div class="lec-img-wrap"><img src="./images/12.jpg" alt="" loading="lazy"/><div class="lec-play"><i class="fab fa-youtube"></i></div><div class="lec-tag">تفسير</div></div><div class="lec-body"><h4>سلسلة تفسير القرآن الكريم</h4><p>فضيلة الشيخ عثمان الخميس</p></div></div></a>
+          <a href="https://youtube.com/playlist?list=PLSSxr3Rf2_X0LhahU5RFyX87dKBAjIkZj" target="_blank" class="lec-link reveal"><div class="lec-card"><div class="lec-img-wrap"><img src="./images/14.jpg" alt="" loading="lazy"/><div class="lec-play"><i class="fab fa-youtube"></i></div><div class="lec-tag">قرآن</div></div><div class="lec-body"><h4>سلسلة مجالس القرآن</h4><p>فضيلة الشيخ أحمد عامر</p></div></div></a>
+          <a href="https://www.youtube.com/watch?v=Hr-phE_e7P0&list=PL_ZXIiZMp3ML0aHjoBPByMCNmy9REBITp" target="_blank" class="lec-link reveal"><div class="lec-card"><div class="lec-img-wrap"><img src="./images/15.jpg" alt="" loading="lazy"/><div class="lec-play"><i class="fab fa-youtube"></i></div><div class="lec-tag">حديث</div></div><div class="lec-body"><h4>سلسلة شرح الأربعين النووية</h4><p>فضيلة الشيخ شريف علي</p></div></div></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BOOKS ═══ -->
+    <section class="books-section page-section" id="books-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal"><div class="section-eyebrow"><span>اقرأ وتعلم</span></div><h3>كتب مختارة</h3></div>
+      <div class="container">
+        <div class="books-grid" id="books-grid"></div>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer" id="footer-section">
+      <svg class="footer-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style="width:100%;display:block;">
+        <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,40 1440,60 L1440,0 L0,0 Z"/>
+      </svg>
+      <div class="footer-inner">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <div class="footer-logo notranslate" translate="no">المنهاج</div>
+            <p class="footer-tagline">منصة إسلامية شاملة لكل مسلم</p>
+            <div class="social">
+              <a href="https://www.facebook.com/profile.php?id=100058504338456" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/elsayyad.eg/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/alsayyad11/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="https://t.me/alsayyad11" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+          </div>
+          <div class="footer-links-group">
+            <h5>أقسام الموقع</h5>
+            <ul>
+              <li><a href="#" data-filter="pray"><i class="fas fa-clock"></i> أوقات الصلاة</a></li>
+              <li><a href="#" data-filter="quran"><i class="fas fa-book-open"></i> القرآن الكريم</a></li>
+              <li><a href="#" data-filter="azkar"><i class="fas fa-star-and-crescent"></i> أذكار اليوم</a></li>
+              <li><a href="#" data-filter="tasbeeh"><i class="fas fa-circle"></i> المسبحة الإلكترونية</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-group">
+            <h5>المحتوى</h5>
+            <ul>
+              <li><a href="#" data-filter="hadith"><i class="fas fa-feather-alt"></i> أحاديث نبوية</a></li>
+              <li><a href="#" data-filter="podcast"><i class="fas fa-podcast"></i> بودكاست</a></li>
+              <li><a href="#" data-filter="lectures"><i class="fas fa-play-circle"></i> محاضرات</a></li>
+              <li><a href="#" data-filter="muhasaba"><i class="fas fa-heart"></i> محاسبة النفس</a></li>
+            </ul>
+          </div>
+          <div class="footer-ayah-box">
+            <div class="footer-ayah-icon">﴿ ﴾</div>
+            <p class="footer-ayah-text">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</p>
+            <p class="footer-ayah-ref">الطلاق: ٢</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-sep-full"></div>
+          <div class="footer-bottom-row">
+            <span class="footer-cr">© 2025 المنهاج الإسلامي — جميع الحقوق محفوظة</span>
+            <span class="footer-made">صُنع بـ <i class="fas fa-heart footer-heart"></i> لوجه الله</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Quran Popup -->
+    <div class="surah-popup" id="surah-popup">
+      <div class="popup-bar">
+        <div class="popup-bar-right">
+          <div class="close-popup" id="close-popup"><i class="fas fa-times"></i></div>
+          <div class="popup-surah-name" id="popup-surah-name">القرآن الكريم</div>
+        </div>
+        <div class="popup-bar-controls">
+          <div class="autoscroll-ctrl">
+            <button class="autoscroll-btn" id="autoscroll-toggle">
+              <span class="as-icon"><i class="fas fa-play"></i></span>
+              <span class="as-label">تمرير تلقائي</span>
+            </button>
+            <div class="autoscroll-speed">
+              <i class="fas fa-tachometer-alt"></i>
+              <input type="range" id="autoscroll-speed" min="1" max="10" value="4" />
+              <span id="autoscroll-speed-val">4 ث</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mushaf-page" id="ayat-container"></div>
+    </div>
+
+    <div class="ScrollBtn" id="scroll-top-btn"><i class="fas fa-arrow-up"></i></div>
+
+    <script src="./main.js"></script>
+    <script>
+      fetch("https://api.ipify.org?format=json")
+        .then(r=>r.json()).then(d=>getIPInfo(d.ip)).catch(e=>console.error(e));
+      function getIPInfo(ip){
+        fetch(`https://ipapi.co/${ip}/json/`)
+          .then(r=>r.json()).then(d=>setCurrentPrayTime(d.country_name,d.region,d.country_code)).catch(e=>console.error(e));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تواصل معنا — المنهاج الإسلامي</title>
+  <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=thuluth-decorated"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  <style>
+    :root {
+      --navy:     #070e18;
+      --navy2:    #0d1a28;
+      --navy3:    #122035;
+      --blue:     #1565a8;
+      --blue-lt:  #1e80d4;
+      --gold:     #c9a84c;
+      --gold-lt:  #e2c97a;
+      --gold-dim: rgba(201,168,76,.15);
+      --gold-glow:rgba(201,168,76,.35);
+      --white:    #f7f2ea;
+      --radius:   18px;
+      --tr:       .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family:'Tajawal',sans-serif;
+      background:var(--navy);
+      color:var(--white);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* ━━━━━━━━━━ BACKGROUND LAYERS ━━━━━━━━━━ */
+    #c-stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+    .bg-mesh {
+      position:fixed; inset:0; z-index:1; pointer-events:none;
+      background:
+        radial-gradient(ellipse 70% 55% at 12% 20%, rgba(21,101,168,.22) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 92% 80%, rgba(201,168,76,.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 55% 50%, rgba(21,101,168,.06) 0%, transparent 70%);
+    }
+
+    /* Islamic geometric SVG pattern */
+    .bg-pattern {
+      position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='0.6'%3E%3Cpolygon points='40,4 46,24 64,18 52,34 72,40 52,46 64,62 46,56 40,76 34,56 16,62 28,46 8,40 28,34 16,18 34,24'/%3E%3Cpolygon points='40,16 49,22 56,31 56,49 49,58 40,64 31,58 24,49 24,31 31,22'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 80px 80px;
+    }
+
+    /* ━━━━━━━━━━ LAYOUT ━━━━━━━━━━ */
+    .page {
+      position:relative; z-index:2;
+      min-height:100vh;
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+      padding:0 clamp(20px,5vw,80px);
+    }
+
+    /* ━━━━━━━━━━ NAV BAR ━━━━━━━━━━ */
+    .c-nav {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:28px 0 0;
+      animation: fadeDown .8s both;
+    }
+    .c-nav-logo {
+      font-family:'thuluth-decorated',serif; font-size:28px;
+      background:linear-gradient(135deg,#fff 0%,var(--gold-lt) 60%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .back-link {
+      display:inline-flex; align-items:center; gap:9px;
+      color:rgba(255,255,255,.55); font-size:13px; font-weight:700;
+      text-decoration:none; transition:var(--tr);
+      background:rgba(255,255,255,.04); backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.08); border-radius:40px;
+      padding:10px 20px; letter-spacing:.5px;
+    }
+    .back-link:hover { color:var(--gold-lt); border-color:var(--gold-dim); background:rgba(201,168,76,.06); }
+    .back-link i { font-size:10px; transition:transform .3s; }
+    .back-link:hover i { transform:translateX(3px); }
+
+    /* ━━━━━━━━━━ MAIN CONTENT ━━━━━━━━━━ */
+    .c-main {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:clamp(32px,5vw,72px);
+      align-items:start;
+      padding:clamp(40px,7vh,80px) 0 60px;
+      max-width:1100px; margin:0 auto; width:100%;
+    }
+
+    /* ── LEFT PANEL ── */
+    .c-left {
+      display:flex; flex-direction:column; gap:40px;
+    }
+
+    .c-hero { animation:fadeRight .9s .1s both; }
+    .c-eyebrow {
+      display:inline-flex; align-items:center; gap:10px;
+      margin-bottom:18px;
+    }
+    .c-eyebrow::before, .c-eyebrow::after {
+      content:''; display:block; height:1px; width:24px;
+      background:linear-gradient(90deg,transparent,var(--gold));
+    }
+    .c-eyebrow::after { background:linear-gradient(270deg,transparent,var(--gold)); }
+    .c-eyebrow span {
+      font-size:11px; font-weight:700; letter-spacing:4px;
+      text-transform:uppercase; color:var(--gold);
+    }
+    .c-title {
+      font-family:'Amiri',serif;
+      font-size:clamp(34px,4.5vw,58px);
+      line-height:1.35; font-weight:700;
+      color:#fff;
+      margin-bottom:20px;
+    }
+    .c-title em {
+      font-style:normal;
+      background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .c-subtitle {
+      font-size:16px; line-height:2;
+      color:rgba(255,255,255,.55); max-width:420px;
+    }
+
+    /* Hadith card */
+    .hadith-card {
+      background:linear-gradient(135deg, rgba(201,168,76,.07) 0%, rgba(21,101,168,.05) 100%);
+      border:1px solid var(--gold-dim);
+      border-radius:var(--radius); padding:32px;
+      position:relative; overflow:hidden;
+      animation:fadeRight .9s .25s both;
+    }
+    .hadith-card::before {
+      content:''; position:absolute; top:-40px; left:-40px;
+      width:160px; height:160px; border-radius:50%;
+      background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .hadith-mark {
+      font-family:serif; font-size:64px; line-height:.8;
+      color:var(--gold); opacity:.25; margin-bottom:16px;
+      display:block;
+    }
+    .hadith-text {
+      font-family:'Amiri',serif;
+      font-size:clamp(17px,2.2vw,22px);
+      line-height:2.1; color:var(--white);
+      margin-bottom:16px;
+    }
+    .hadith-sanad {
+      font-size:12px; font-weight:700; letter-spacing:2px;
+      color:var(--gold); text-transform:uppercase;
+      display:flex; align-items:center; gap:8px;
+    }
+    .hadith-sanad::before {
+      content:''; display:block; height:1px; width:20px;
+      background:var(--gold); opacity:.5;
+    }
+
+    /* Sadaqa block */
+    .sadaqa-card {
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.07);
+      background:rgba(255,255,255,.03);
+      padding:28px 32px;
+      display:flex; gap:20px; align-items:flex-start;
+      animation:fadeRight .9s .38s both;
+      transition:var(--tr);
+    }
+    .sadaqa-card:hover {
+      border-color:var(--gold-dim);
+      background:rgba(201,168,76,.04);
+    }
+    .sadaqa-icon-wrap {
+      width:52px; height:52px; flex-shrink:0; border-radius:14px;
+      background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.06));
+      border:1px solid var(--gold-dim);
+      display:flex; align-items:center; justify-content:center;
+      font-size:24px;
+    }
+    .sadaqa-info h3 {
+      font-family:'Amiri',serif; font-size:19px; color:var(--gold-lt);
+      margin-bottom:10px; font-weight:700;
+    }
+    .sadaqa-info p {
+      font-size:14px; line-height:1.9; color:rgba(255,255,255,.55);
+    }
+    .sadaqa-info strong { color:rgba(255,255,255,.85); }
+
+    /* ── RIGHT PANEL ── */
+    .c-right {
+      display:flex; flex-direction:column; gap:24px;
+    }
+
+    /* Contact cards */
+    .contact-card {
+      display:flex; align-items:center; gap:20px;
+      padding:24px 28px; border-radius:var(--radius);
+      text-decoration:none; color:inherit;
+      border:1px solid rgba(255,255,255,.07);
+      background:rgba(255,255,255,.03);
+      transition:var(--tr); position:relative; overflow:hidden;
+    }
+    .contact-card::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg, var(--card-accent,rgba(201,168,76,.0)) 0%, transparent 100%);
+      opacity:0; transition:opacity .4s;
+    }
+    .contact-card:hover { transform:translateX(-6px); }
+    .contact-card:hover::after { opacity:1; }
+
+    .contact-card.wa {
+      --card-accent: rgba(37,211,102,.06);
+      animation:fadeLeft .9s .15s both;
+    }
+    .contact-card.wa:hover {
+      border-color:rgba(37,211,102,.35);
+      box-shadow:0 12px 40px rgba(37,211,102,.12), inset 0 1px 0 rgba(37,211,102,.08);
+    }
+    .contact-card.ph {
+      --card-accent: rgba(21,101,168,.06);
+      animation:fadeLeft .9s .25s both;
+    }
+    .contact-card.ph:hover {
+      border-color:rgba(21,101,168,.4);
+      box-shadow:0 12px 40px rgba(21,101,168,.18), inset 0 1px 0 rgba(21,101,168,.1);
+    }
+
+    .cc-icon {
+      width:56px; height:56px; border-radius:16px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:24px; color:#fff;
+      box-shadow:0 6px 20px rgba(0,0,0,.35);
+      position:relative; z-index:1;
+    }
+    .wa .cc-icon { background:linear-gradient(135deg,#25d366 0%,#128c7e 100%); }
+    .ph .cc-icon { background:linear-gradient(135deg,#2180cc 0%,#0f5fa8 100%); }
+
+    .cc-text { flex:1; position:relative; z-index:1; }
+    .cc-label {
+      font-size:11px; font-weight:700; letter-spacing:2.5px;
+      color:rgba(255,255,255,.35); text-transform:uppercase; margin-bottom:6px;
+    }
+    .cc-value {
+      font-size:20px; font-weight:700; color:#fff; direction:ltr;
+      font-family:'Tajawal',sans-serif;
+    }
+    .cc-sub {
+      font-size:12px; color:rgba(255,255,255,.3); margin-top:3px;
+    }
+    .cc-arrow {
+      color:rgba(255,255,255,.2); font-size:16px; flex-shrink:0;
+      position:relative; z-index:1;
+      transition:transform .3s, color .3s;
+    }
+    .contact-card:hover .cc-arrow { color:rgba(255,255,255,.6); transform:translateX(-4px); }
+
+    /* Divider */
+    .c-divider {
+      height:1px; width:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+      animation:fadeLeft .9s .35s both;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size:11px; font-weight:700; letter-spacing:3px;
+      color:rgba(255,255,255,.25); text-transform:uppercase;
+      animation:fadeLeft .9s .38s both;
+    }
+
+    /* Social grid */
+    .social-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .soc-btn {
+      display:flex; align-items:center; gap:12px;
+      padding:16px 20px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.07);
+      color:rgba(255,255,255,.6); text-decoration:none;
+      font-size:14px; font-weight:700;
+      transition:var(--tr);
+      background:rgba(255,255,255,.03);
+      position:relative; overflow:hidden;
+    }
+    .soc-btn i { font-size:18px; flex-shrink:0; }
+    .soc-btn span { font-size:13px; }
+    .soc-btn::before {
+      content:''; position:absolute; inset:0;
+      background:var(--soc-color,transparent);
+      opacity:0; transition:opacity .35s;
+    }
+    .soc-btn:hover { transform:translateY(-3px); color:#fff; }
+    .soc-btn:hover::before { opacity:.07; }
+
+    .soc-btn.fb { --soc-color:#1877f2; animation:fadeLeft .9s .42s both; }
+    .soc-btn.ig { --soc-color:#e1306c; animation:fadeLeft .9s .48s both; }
+    .soc-btn.li { --soc-color:#0a66c2; animation:fadeLeft .9s .54s both; }
+    .soc-btn.tg { --soc-color:#26a5e4; animation:fadeLeft .9s .60s both; }
+    .soc-btn.tw { --soc-color:#1da1f2; animation:fadeLeft .9s .66s both; }
+
+    .soc-btn.fb:hover { border-color:rgba(24,119,242,.4); box-shadow:0 8px 28px rgba(24,119,242,.15); }
+    .soc-btn.ig:hover { border-color:rgba(225,48,108,.4); box-shadow:0 8px 28px rgba(225,48,108,.15); }
+    .soc-btn.li:hover { border-color:rgba(10,102,194,.4); box-shadow:0 8px 28px rgba(10,102,194,.15); }
+    .soc-btn.tg:hover { border-color:rgba(38,165,228,.4); box-shadow:0 8px 28px rgba(38,165,228,.15); }
+    .soc-btn.tw:hover { border-color:rgba(29,161,242,.4); box-shadow:0 8px 28px rgba(29,161,242,.15); }
+
+    /* Glowing gold divider accent */
+    .gold-line {
+      height:2px; width:100%; margin:4px 0;
+      background:linear-gradient(90deg,
+        transparent 0%, rgba(201,168,76,0) 10%,
+        rgba(201,168,76,.5) 40%, rgba(201,168,76,.8) 50%,
+        rgba(201,168,76,.5) 60%, rgba(201,168,76,0) 90%, transparent 100%);
+      animation:fadeLeft .9s .72s both;
+    }
+
+    /* ━━━━━━━━━━ FOOTER ━━━━━━━━━━ */
+    .c-foot {
+      padding:24px 0 32px;
+      display:flex; align-items:center; justify-content:space-between;
+      border-top:1px solid rgba(255,255,255,.05);
+      max-width:1100px; margin:0 auto; width:100%;
+      animation:fadeUp .8s .8s both;
+      flex-wrap:wrap; gap:12px;
+    }
+    .c-cr { font-size:12px; color:rgba(255,255,255,.18); }
+    .c-made {
+      font-size:12px; color:rgba(255,255,255,.18);
+      display:flex; align-items:center; gap:6px;
+    }
+    .c-made i { color:var(--gold); animation:heartbeat 2s ease-in-out infinite; }
+    @keyframes heartbeat {
+      0%,100% { transform:scale(1); }
+      50%      { transform:scale(1.3); }
+    }
+
+    /* ━━━━━━━━━━ ANIMATIONS ━━━━━━━━━━ */
+    @keyframes fadeUp    { from{opacity:0;transform:translateY(28px);}  to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeDown  { from{opacity:0;transform:translateY(-20px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeRight { from{opacity:0;transform:translateX(-28px);} to{opacity:1;transform:translateX(0);} }
+    @keyframes fadeLeft  { from{opacity:0;transform:translateX(28px);}  to{opacity:1;transform:translateX(0);} }
+
+    /* ━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━ */
+    @media (max-width:860px) {
+      .c-main { grid-template-columns:1fr; gap:40px; }
+      .c-right { order:-1; }
+    }
+    @media (max-width:520px) {
+      .social-grid { grid-template-columns:1fr; }
+      .c-title { font-size:32px; }
+      .contact-card { padding:18px 20px; }
+      .cc-value { font-size:17px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="c-stars"></canvas>
+  <div class="bg-mesh"></div>
+  <div class="bg-pattern"></div>
+
+  <div class="page">
+
+    <!-- NAV -->
+    <nav class="c-nav">
+      <div class="c-nav-logo">المنهاج</div>
+      <a href="index.html" class="back-link">
+        العودة للموقع <i class="fas fa-arrow-right"></i>
+      </a>
+    </nav>
+
+    <!-- MAIN GRID -->
+    <main class="c-main">
+
+      <!-- LEFT: Hero + Hadith + Sadaqa -->
+      <div class="c-left">
+
+        <div class="c-hero">
+          <div class="c-eyebrow"><span>تواصل معنا</span></div>
+          <h1 class="c-title">
+            نسعد بتواصلك<br/>
+            في أي <em>وقت</em>
+          </h1>
+          <p class="c-subtitle">
+            سواء كان سؤالاً، اقتراحاً، أو رغبة في صدقة جارية — نحن هنا، ويسعدنا الاستماع إليك.
+          </p>
+        </div>
+
+        <div class="hadith-card">
+          <span class="hadith-mark">❝</span>
+          <p class="hadith-text">
+            إِذَا انْقَطَعَ عَمَلُ ابْنِ آدَمَ إِلَّا مِنْ ثَلَاثٍ: صَدَقَةٍ جَارِيَةٍ، أَوْ عِلْمٍ يُنْتَفَعُ بِهِ، أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ
+          </p>
+          <div class="hadith-sanad">رواه مسلم</div>
+        </div>
+
+        <div class="sadaqa-card">
+          <div class="sadaqa-icon-wrap">🌿</div>
+          <div class="sadaqa-info">
+            <h3>صدقة جارية — علم ينتفع به</h3>
+            <p>
+              يمكنك طلب <strong>نسخة من الموقع</strong> باسمك أو باسم أحد أحبائك —
+              صدقة جارية تجري لك حسناتها ما انتفع بها أحد.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Contact + Social -->
+      <div class="c-right">
+
+        <a href="https://wa.me/201016607696" target="_blank" class="contact-card wa">
+          <div class="cc-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="cc-text">
+            <div class="cc-label">واتساب</div>
+            <div class="cc-value" dir="ltr">+20 101 660 7696</div>
+            <div class="cc-sub">متاح للرد على رسائلك</div>
+          </div>
+          <i class="fas fa-arrow-left cc-arrow"></i>
+        </a>
+
+        <a href="tel:+201016607696" class="contact-card ph">
+          <div class="cc-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="cc-text">
+            <div class="cc-label">اتصال مباشر</div>
+            <div class="cc-value" dir="ltr">+20 101 660 7696</div>
+            <div class="cc-sub">يمكنك الاتصال في أي وقت</div>
+          </div>
+          <i class="fas fa-arrow-left cc-arrow"></i>
+        </a>
+
+        <div class="c-divider"></div>
+        <div class="section-label">تابعنا على منصات التواصل</div>
+
+        <div class="social-grid">
+          <a href="https://www.facebook.com/profile.php?id=100058504338456" target="_blank" class="soc-btn fb">
+            <i class="fab fa-facebook"></i><span>فيسبوك</span>
+          </a>
+          <a href="https://www.instagram.com/elsayyad.eg/" target="_blank" class="soc-btn ig">
+            <i class="fab fa-instagram"></i><span>إنستغرام</span>
+          </a>
+          <a href="https://www.linkedin.com/in/alsayyad11/" target="_blank" class="soc-btn li">
+            <i class="fab fa-linkedin"></i><span>لينكدإن</span>
+          </a>
+          <a href="https://t.me/alsayyad11" target="_blank" class="soc-btn tg">
+            <i class="fab fa-telegram-plane"></i><span>تيليغرام</span>
+          </a>
+          <a href="#" class="soc-btn tw">
+            <i class="fab fa-twitter"></i><span>تويتر</span>
+          </a>
+        </div>
+
+        <div class="gold-line"></div>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="c-foot">
+      <span class="c-cr">© 2025 المنهاج الإسلامي — جميع الحقوق محفوظة</span>
+      <span class="c-made">صُنع بـ <i class="fas fa-heart"></i> لوجه الله</span>
+    </footer>
+
+  </div><!-- /page -->
+
+  <script>
+  /* ── Star field ── */
+  (function(){
+    const cv = document.getElementById('c-stars');
+    const ctx = cv.getContext('2d');
+    let W, H, af, t0 = performance.now();
+    const TIERS = [
+      {w:55,rMin:.4,rMax:.9, oMin:.12,oMax:.45,glow:0, gc:0},
+      {w:30,rMin:.9,rMax:1.5,oMin:.30,oMax:.70,glow:5, gc:.07},
+      {w:12,rMin:1.5,rMax:2.4,oMin:.55,oMax:.88,glow:10,gc:.4},
+      {w:3, rMin:2.4,rMax:3.6,oMin:.75,oMax:1,  glow:18,gc:1},
+    ];
+    const pool=[]; TIERS.forEach((t,i)=>{ for(let j=0;j<t.w;j++) pool.push(i); });
+    let sv=998317; const rnd=()=>{ sv=(sv*16807)%2147483647; return(sv-1)/2147483646; };
+    const stars=Array.from({length:200},()=>{
+      const T=TIERS[pool[Math.floor(rnd()*pool.length)]];
+      return{ x:rnd(), y:Math.pow(rnd(),1.3), r:T.rMin+rnd()*(T.rMax-T.rMin),
+        o:T.oMin+rnd()*(T.oMax-T.oMin), gl:rnd()<T.gc, gr:T.glow,
+        tw:rnd()<.14, to:rnd()*Math.PI*2, ts:.4+rnd()*1.6 };
+    });
+    function resize(){ W=cv.width=window.innerWidth; H=cv.height=window.innerHeight; }
+    function draw(now){
+      const e=(now-t0)/1e3; ctx.clearRect(0,0,W,H);
+      stars.forEach(s=>{
+        let o=s.o;
+        if(s.tw) o=Math.max(.05,o+Math.sin(e*s.ts+s.to)*.22);
+        const x=s.x*W, y=s.y*H;
+        ctx.save(); ctx.globalAlpha=o;
+        if(s.gl){
+          const g=ctx.createRadialGradient(x,y,0,x,y,s.gr*s.r);
+          g.addColorStop(0,`rgba(220,210,180,${o*.55})`);
+          g.addColorStop(.4,`rgba(201,168,76,${o*.18})`);
+          g.addColorStop(1,'rgba(201,168,76,0)');
+          ctx.beginPath(); ctx.arc(x,y,s.gr*s.r,0,Math.PI*2);
+          ctx.fillStyle=g; ctx.fill();
+        }
+        ctx.beginPath(); ctx.arc(x,y,s.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(240,235,215,1)'; ctx.fill();
+        ctx.restore();
+      });
+      af=requestAnimationFrame(draw);
+    }
+    resize(); af=requestAnimationFrame(draw);
+    let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(resize,120); });
+  })();
+  </script>
+</body>
+</html>
