@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=thuluth-decorated" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Amiri+Quran&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -29,6 +29,7 @@
           <li data-filter="muhasaba">محاسبة النفس</li>
           <li data-filter="tasbeeh">مسبحة</li>
           <li data-filter="quran">القرآن</li>
+          <li data-filter="radio">إذاعة</li>
           <li data-filter="azkar">أذكار اليوم</li>
           <li data-filter="huson">حصون المسلم</li>
           <li data-filter="hadith">أحاديث</li>
@@ -193,6 +194,25 @@
       <div class="container"><div class="surahContainer reveal" id="surahContainer"></div></div>
     </section>
 
+    <!-- ═══ QURAN RADIO ═══ -->
+    <section class="radio-section page-section" id="radio-section">
+      <div class="section-transition-top"></div>
+      <div class="section-header reveal">
+        <div class="section-eyebrow"><span>بث مباشر ٢٤/٧</span></div>
+        <h3>إذاعة القرآن الكريم</h3>
+      </div>
+      <div class="container">
+        <div class="radio-grid" id="radio-grid">
+          <div class="radio-card-skel skel"></div>
+          <div class="radio-card-skel skel"></div>
+          <div class="radio-card-skel skel"></div>
+          <div class="radio-card-skel skel"></div>
+          <div class="radio-card-skel skel"></div>
+          <div class="radio-card-skel skel"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ AZKAR MORNING / EVENING ═══ -->
     <section class="azkar-section page-section" id="azkar-section">
       <div class="section-transition-top"></div>
@@ -226,10 +246,18 @@
       <div class="section-transition-top"></div>
       <div class="section-header reveal"><div class="section-eyebrow"><span>من السنة النبوية</span></div><h3>أحاديث نبوية شريفة</h3></div>
       <div class="container">
+        <div class="hadith-books-bar reveal" id="hadith-books-bar">
+          <button class="hbook-tab active" data-collection="muslim"><i class="fas fa-book"></i> صحيح مسلم</button>
+          <button class="hbook-tab" data-collection="bukhari"><i class="fas fa-book"></i> صحيح البخاري</button>
+          <button class="hbook-tab" data-collection="abu-dawud"><i class="fas fa-book"></i> أبو داود</button>
+          <button class="hbook-tab" data-collection="tirmidzi"><i class="fas fa-book"></i> الترمذي</button>
+          <button class="hbook-tab" data-collection="nasai"><i class="fas fa-book"></i> النسائي</button>
+          <button class="hbook-tab" data-collection="ibn-majah"><i class="fas fa-book"></i> ابن ماجه</button>
+        </div>
         <div class="hadith-card reveal"><div class="hadith-quote-icon">❝</div><div class="hadithContainer"><div class="loading-dots"><span></span><span></span><span></span></div></div></div>
         <div class="hadith-nav reveal">
           <button class="hadith-btn prev"><i class="fas fa-chevron-right"></i> السابق</button>
-          <div class="hadith-number">1 / 300</div>
+          <div class="hadith-number">١ / ٣٠٠</div>
           <button class="hadith-btn next">التالي <i class="fas fa-chevron-left"></i></button>
         </div>
       </div>
@@ -389,6 +417,7 @@
             <ul>
               <li><a href="#" data-filter="pray"><i class="fas fa-clock"></i> أوقات الصلاة</a></li>
               <li><a href="#" data-filter="quran"><i class="fas fa-book-open"></i> القرآن الكريم</a></li>
+              <li><a href="#" data-filter="radio"><i class="fas fa-broadcast-tower"></i> إذاعة القرآن</a></li>
               <li><a href="#" data-filter="azkar"><i class="fas fa-star-and-crescent"></i> أذكار اليوم</a></li>
               <li><a href="#" data-filter="tasbeeh"><i class="fas fa-circle"></i> المسبحة الإلكترونية</a></li>
             </ul>
@@ -426,6 +455,35 @@
           <div class="popup-surah-name" id="popup-surah-name">القرآن الكريم</div>
         </div>
         <div class="popup-bar-controls">
+
+          <!-- ══ AUDIO PLAYER ══ -->
+          <div class="audio-ctrl" id="audio-ctrl">
+            <div class="reciter-wrap">
+              <span class="reciter-label"><i class="fas fa-microphone-alt"></i></span>
+              <select id="reciter-select" class="reciter-select"></select>
+            </div>
+            <button class="audio-play-btn" id="audio-play-btn" disabled title="تشغيل / إيقاف التلاوة">
+              <span class="audio-icon"><i class="fas fa-play"></i></span>
+              <span class="audio-label">تشغيل</span>
+            </button>
+            <div class="audio-loading" id="audio-loading" style="display:none">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- ══ VIEW TOGGLE ══ -->
+          <button class="view-toggle-btn active" id="view-toggle-btn" title="تبديل عرض الصفحات">
+            <i class="fas fa-book-open"></i>
+            <span id="view-toggle-label">صفحتان</span>
+          </button>
+
+          <!-- ══ TAFSIR TOGGLE ══ -->
+          <button class="tafsir-toggle-btn" id="tafsir-toggle-btn" title="عرض تفسير الآيات">
+            <i class="fas fa-scroll"></i>
+            <span>تفسير</span>
+          </button>
+
+          <!-- ══ AUTOSCROLL ══ -->
           <div class="autoscroll-ctrl">
             <button class="autoscroll-btn" id="autoscroll-toggle">
               <span class="as-icon"><i class="fas fa-play"></i></span>
@@ -437,9 +495,42 @@
               <span id="autoscroll-speed-val">4 ث</span>
             </div>
           </div>
+
         </div>
       </div>
-      <div class="mushaf-page" id="ayat-container"></div>
+      <div id="ayat-container" style="display:block;"></div>
+
+      <!-- Tafsir panel — sticky bottom of popup -->
+      <div class="tafsir-panel" id="tafsir-panel">
+        <div class="tafsir-panel-bar">
+          <div class="tafsir-panel-right">
+            <button class="tafsir-panel-close" id="tafsir-panel-close"><i class="fas fa-chevron-down"></i></button>
+            <span class="tafsir-ayah-ref" id="tafsir-ayah-ref">التفسير</span>
+          </div>
+          <select class="tafsir-book-select" id="tafsir-book-select">
+            <option value="ar-tafsir-muyassar">التفسير الميسر</option>
+            <option value="ar-tafsir-jalalayn">الجلالين</option>
+            <option value="ar-tafsir-saddi">تفسير السعدي</option>
+            <option value="ar-tafsir-baghawy">تفسير البغوي</option>
+            <option value="ar-tafsir-qurtubi">تفسير القرطبي</option>
+          </select>
+        </div>
+        <div class="tafsir-content" id="tafsir-content">
+          <p class="tafsir-hint"><i class="fas fa-hand-point-right" style="color:var(--gold);margin-left:6px"></i>اضغط على أي آية لعرض تفسيرها</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Radio global player bar -->
+    <div class="radio-player-bar" id="radio-player-bar">
+      <div class="rpb-waves">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="rpb-info">
+        <span class="rpb-live"><span class="rpb-live-dot"></span>مباشر</span>
+        <span class="rpb-name" id="rpb-name">إذاعة القرآن الكريم</span>
+      </div>
+      <button class="rpb-stop" id="rpb-stop" title="إيقاف البث"><i class="fas fa-stop"></i></button>
     </div>
 
     <div class="ScrollBtn" id="scroll-top-btn"><i class="fas fa-arrow-up"></i></div>
