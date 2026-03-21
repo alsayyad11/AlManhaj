@@ -36,15 +36,17 @@
   const slides = Array.from(document.querySelectorAll('.hero-slide'));
   if (!slides.length) return;
 
-  const DISPLAY  = 7000;  // how long each slide is fully visible
-  const FADE_IN  = 2500;  // ms — must match CSS transition
+  const isMobile = window.innerWidth <= 768;
+  const DISPLAY  = isMobile ? 5000 : 7000;
+  const FADE_IN  = isMobile ? 1000 : 2500;
   const KB_DIRS  = ['kb-0','kb-1','kb-2','kb-3'];
 
   let current = 0;
 
   function applyKB(slide) {
     KB_DIRS.forEach(c => slide.classList.remove(c));
-    slide.classList.add(KB_DIRS[Math.floor(Math.random() * KB_DIRS.length)]);
+    // على الموبايل: لا Ken Burns — يأثر على الأداء
+    if (!isMobile) slide.classList.add(KB_DIRS[Math.floor(Math.random() * KB_DIRS.length)]);
   }
 
   // Prime first slide
@@ -80,6 +82,8 @@
 (function initDarkParticles() {
   const wrap = document.getElementById('hero-dark-particles');
   if (!wrap) return;
+  // الموبايل: متضيعش resources في تأثيرات مش هتتشاف
+  if (window.innerWidth <= 768) return;
   const COUNT = 35;
   for (let i = 0; i < COUNT; i++) {
     const el = document.createElement('div');
@@ -110,6 +114,8 @@
 (function initStarField() {
   const canvas = document.getElementById('hero-stars');
   if (!canvas) return;
+  // الموبايل: Canvas animation مكلفة جداً على الـ GPU
+  if (window.innerWidth <= 768) return;
   const ctx = canvas.getContext('2d');
   const TIERS = [
     {weight:55,minR:.4, maxR:.9, minO:.20,maxO:.55,glowChance:0,   glow:0 },
@@ -173,6 +179,8 @@
 (function initLanterns() {
   const wrap = document.getElementById('hero-lights');
   if (!wrap) return;
+  // الموبايل: 28 element + animation = ثقيل جداً
+  if (window.innerWidth <= 768) return;
   const LANTERNS = 28;
   for (let i = 0; i < LANTERNS; i++) {
     const el = document.createElement('div');
@@ -312,7 +320,6 @@ const sectionMap = {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const id = entry.target.id || entry.target.className.split(' ')[0];
         navItems.forEach(li => {
           const sel = sectionMap[li.dataset.filter];
           if (!sel) return;
@@ -321,7 +328,8 @@ const sectionMap = {
         });
       }
     });
-  }, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+  // threshold منخفض + rootMargin يعطي تحديث أسرع وأدق
+  }, { threshold: 0.15, rootMargin: '-60px 0px -50% 0px' });
 
   sectionKeys.forEach(([, sel]) => {
     const el = document.querySelector(sel);
@@ -372,6 +380,10 @@ document.querySelectorAll('.page-section').forEach(s => sectionObserver.observe(
 
 navMenu?.querySelectorAll('li[data-filter]').forEach(li => {
   li.addEventListener('click', () => {
+    // ✅ تحديث فوري للـ active state بدون انتظار الـ IntersectionObserver
+    navMenu.querySelectorAll('li[data-filter]').forEach(x => x.classList.remove('nav-active'));
+    li.classList.add('nav-active');
+
     const sel = sectionMap[li.dataset.filter];
     if (sel) { const el = document.querySelector(sel); if (el) el.scrollIntoView({behavior:'smooth'}); }
     navMenu.classList.remove('active');
