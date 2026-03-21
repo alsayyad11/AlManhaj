@@ -2483,139 +2483,196 @@ body.dark .tafsir-toggle-btn {
   .autoscroll-speed { display: none; }
 }
 
-/* ══════════════════════════════════════════════════════════════
-   MOBILE PERFORMANCE & RESPONSIVE FIXES
-   ► يوقف التأثيرات الثقيلة على الموبايل لتحسين الأداء
-═══════════════════════════════════════════════════════════════ */
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║   MOBILE PERFORMANCE + COMPREHENSIVE RESPONSIVE FIXES       ║
+   ╚══════════════════════════════════════════════════════════════╝ */
 
-/* ── تحسين اللمس على جميع الأجهزة ── */
+/* ━━━ تحسينات عامة للمس والأداء ━━━ */
+*, *::before, *::after { box-sizing: border-box; }
+
 button, [data-filter], .surah, .hbook-tab, .huson-cat-btn,
-.fc-btn, .pray-change-btn, .azkar-toggle-btn {
+.fc-btn, .pray-change-btn, .azkar-toggle-btn, .tasbeeh-btn {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 
-/* ── تحسين section padding على الشاشات الصغيرة ── */
-@media (max-width: 480px) {
-  section { padding: 52px 0; }
-  .section-header { margin-bottom: 32px; }
-  .container { padding: 0 16px; }
-}
-
-/* ── إخفاء التأثيرات الثقيلة على الموبايل ── */
+/* ━━━ إخفاء التأثيرات الثقيلة على الموبايل ━━━ */
 @media (max-width: 768px) {
-  /* إيقاف الجسيمات والشموع والنجوم — أثقل عنصر في الصفحة */
+  /* الجسيمات والشموع والنجوم — الأثقل في الصفحة، JS كمان مش هيخلقها */
   #hero-dark-particles,
   #hero-lights,
   #hero-stars { display: none !important; }
 
-  /* إيقاف تأثير Ken Burns على الـ hero — يستهلك GPU بشكل كبير */
-  .hero-slide.active { animation: none !important; }
-
-  /* إيقاف النمط الزخرفي المتكرر في الخلفية */
-  body:not(.dark)::before,
-  body.dark::before { display: none; }
-
   /* إيقاف دوران حدود بطاقة الصلاة */
-  .pray-location-glow { animation: none; }
+  .pray-location-glow { animation: none !important; }
 
-  /* تسريع reveal animation */
-  .reveal {
-    transition: opacity .4s ease, transform .4s ease;
-  }
+  /* إيقاف النمط الزخرفي في الخلفية */
+  body:not(.dark)::before,
+  body.dark::before { display: none !important; }
 
-  /* تقليل hero min-height */
+  /* تحسين hero */
+  .hero-slide.active { animation: none !important; }
+  .hero-slide { transition: opacity 1s ease-in-out !important; }
   .main { min-height: 100svh; }
-
-  /* تحسين hero text على الشاشات الصغيرة */
   .main .title { max-width: 100%; }
-  .hero-sub { font-size: 15px; line-height: 1.8; margin-bottom: 28px; }
-  .hero-eyebrow { margin-bottom: 12px; }
-
-  /* إصلاح الأزرار في الـ hero */
-  .btn-gold, .btn-ghost { font-size: 15px; padding: 13px 24px; }
-
-  /* إصلاح stats bar */
-  .hero-stat { padding: 4px 10px; }
-  .hero-stat-num { font-size: 17px; }
-  .hero-stat-label { font-size: 11px; }
-
-  /* تقليل الانيميشن في الـ reveal للأداء */
-  .reveal { transform: translateY(16px); }
 }
 
-/* ── إصلاح hero slideshow: عرض صورة واحدة فقط على الموبايل ── */
-@media (max-width: 768px) {
-  .hero-slide:not(.active):not([style*="z-index: 2"]) {
-    display: none;
-  }
-}
+/* ━━━ Container ━━━ */
+@media (max-width: 768px) { .container { padding: 0 18px; } }
+@media (max-width: 480px) { .container { padding: 0 14px; } }
 
-/* ── إصلاح header على الشاشات الصغيرة جداً ── */
-@media (max-width: 380px) {
-  .header .logo { font-size: 32px; }
-  .bars { width: 36px; height: 36px; }
-}
+/* ━━━ Section Padding ━━━ */
+@media (max-width: 768px) { section { padding: 60px 0 !important; } }
+@media (max-width: 480px) { section { padding: 44px 0 !important; } .section-header { margin-bottom: 28px; } }
 
-/* ── إصلاح نافذة القرآن على الموبايل ── */
-@media (max-width: 600px) {
-  .surah-popup {
-    width: 100vw !important;
-    height: 100dvh !important;
-    border-radius: 0 !important;
-  }
-  .mushaf-text { font-size: 20px !important; line-height: 2.6 !important; }
-}
-
-/* ── إصلاح muhasaba flashcard على الموبايل ── */
+/* ━━━ Header ━━━ */
 @media (max-width: 480px) {
-  .flashcard-scene { perspective: 600px; }
-  .flashcard { min-height: 200px; }
-  .flashcard-q-text { font-size: 19px; }
-  .flashcard-back-text { font-size: 15px; }
+  .header { padding: 10px 0; }
+  .header .logo { font-size: 34px; }
+  .bars { width: 36px; height: 36px; font-size: 14px; }
 }
 
-/* ── إصلاح tasbeeh على الموبايل ── */
+/* ━━━ Hero text ━━━ */
+@media (max-width: 768px) {
+  .main .title h2 { font-size: clamp(26px, 7vw, 44px); margin-bottom: 12px; }
+  .hero-sub { font-size: 14px; line-height: 1.85; margin-bottom: 24px; max-width: 100%; }
+  .hero-eyebrow { margin-bottom: 10px; }
+  .hero-eyebrow span { font-size: 10px; letter-spacing: 2px; }
+  .hero-buttons { gap: 10px; }
+  .btn-gold { font-size: 14px; padding: 12px 22px; }
+  .btn-ghost { font-size: 14px; padding: 11px 18px; }
+  .scroll-hint { display: none; }
+}
+
+/* ━━━ Stats Bar ━━━ */
+@media (max-width: 600px) {
+  .hero-stats-bar .container { flex-wrap: wrap; gap: 4px 0; padding: 10px 14px; }
+  .hero-stat { padding: 5px 12px; }
+  .hero-stat-num { font-size: 16px; }
+  .hero-stat-label { font-size: 10px; }
+  .hero-stat-divider:nth-child(4) { display: none; }
+}
 @media (max-width: 380px) {
-  .tasbeeh-circle-wrap { width: 220px !important; height: 220px !important; }
-  .tasbeeh-count { font-size: 28px; }
+  .hero-stat-divider { display: none; }
+  .hero-stat { width: 50%; justify-content: center; border-bottom: 1px solid rgba(201,168,76,.12); }
 }
 
-/* ── إصلاح pray cards على الشاشات الصغيرة جداً ── */
-@media (max-width: 360px) {
+/* ━━━ Prayer Cards ━━━ */
+@media (max-width: 600px) {
+  .pray-cards-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px; }
+}
+@media (max-width: 400px) {
   .pray-cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
   .pray-card { padding: 14px 8px 12px; }
-  .pray-card-name { font-size: 12px; }
-  .pray-card-time { font-size: 16px; }
+  .pray-card-name, .pray-name { font-size: 11px; }
+}
+@media (max-width: 768px) {
+  .pray-location-inner { padding: 14px 16px; flex-wrap: wrap; gap: 10px; }
+  .pray-location-default { font-size: 14px; }
 }
 
-/* ── إصلاح footer على الموبايل ── */
+/* ━━━ Muhasaba Flashcard ━━━ */
+@media (max-width: 540px) {
+  .flashcard-q-text { font-size: 18px; line-height: 1.8; }
+  .flashcard-back-text { font-size: 14px; }
+  .flashcard-scene { perspective: 700px; }
+}
+
+/* ━━━ Tasbeeh ━━━ */
 @media (max-width: 480px) {
-  .footer-logo { font-size: 40px; }
-  .footer-inner { padding: 24px 0 0; }
-  .footer-ayah-text { font-size: 20px; }
-  .footer-bottom-row { flex-direction: column; gap: 8px; text-align: center; }
+  .tasbeeh-circle-wrap { width: 240px !important; height: 240px !important; }
+  .tasbeeh-count { font-size: 28px; }
+  .dhikr-text { font-size: 22px; }
+  .dhikr-pills { gap: 6px; }
+  .dhikr-pill { font-size: 12px; padding: 7px 12px; }
+}
+@media (max-width: 360px) {
+  .tasbeeh-circle-wrap { width: 200px !important; height: 200px !important; }
 }
 
-/* ── تقليل التأثيرات للمستخدمين الذين يفضلون تقليل الحركة ── */
+/* ━━━ Quran Surah Grid ━━━ */
+@media (max-width: 480px) {
+  .surahContainer { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+  .surahContainer .surah { padding: 12px 10px 10px; }
+  .surahContainer .surah p:first-child { font-size: 15px; }
+}
+
+/* ━━━ Quran Popup ━━━ */
+@media (max-width: 640px) {
+  .surah-popup { border-radius: 0 !important; }
+  .popup-bar { padding: 8px 12px; gap: 6px; }
+  .mushaf-text { font-size: 20px !important; line-height: 2.5 !important; }
+  .mushaf-page { padding: 16px 12px 50px !important; }
+}
+
+/* ━━━ Azkar ━━━ */
+@media (max-width: 480px) {
+  .azkar-text { font-size: 18px !important; line-height: 2; }
+  .azkar-card-action { min-width: 64px; padding: 14px 10px; }
+  .azkar-count-display { font-size: 22px; }
+  .azkar-toggle-wrap { margin-bottom: 28px; }
+  .azkar-toggle-btn { font-size: 13px; padding: 10px 16px; }
+}
+
+/* ━━━ Huson ━━━ */
+@media (max-width: 480px) {
+  .huson-cat-btn { padding: 8px 12px; font-size: 12px; gap: 6px; }
+  .huson-cats { gap: 6px; }
+  .huson-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* ━━━ Hadith ━━━ */
+@media (max-width: 480px) {
+  .hadith-card { padding: 22px 14px; }
+  .hadith-text { font-size: 18px; line-height: 2.2; }
+}
+
+/* ━━━ Lectures & Podcast ━━━ */
+@media (max-width: 480px) {
+  .lectures-grid, .podcast-grid { grid-template-columns: 1fr !important; gap: 14px; }
+}
+
+/* ━━━ Books ━━━ */
+@media (max-width: 480px) {
+  .books-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+}
+@media (max-width: 340px) {
+  .books-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ━━━ Radio ━━━ */
+@media (max-width: 480px) {
+  .radio-grid { grid-template-columns: 1fr !important; gap: 12px; }
+}
+
+/* ━━━ Footer ━━━ */
+@media (max-width: 480px) {
+  .footer-logo { font-size: 38px; }
+  .footer-inner { padding: 20px 0 0; }
+  .footer-ayah-text { font-size: 20px; }
+  .footer-bottom-row { flex-direction: column; gap: 8px; text-align: center; font-size: 12px; }
+  .social a { width: 36px; height: 36px; font-size: 14px; }
+}
+
+/* ━━━ Scroll behaviour iOS ━━━ */
+.surah-popup, .header ul, .azkar-grid, .huson-grid {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ━━━ Radio player bar ━━━ */
+@media (max-width: 400px) {
+  .radio-player-bar { padding: 7px 12px; gap: 8px; }
+  .rpb-name { font-size: 13px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+/* ━━━ Reduce motion (accessibility) ━━━ */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .hero-slide.active { opacity: .35 !important; }
-  #hero-dark-particles,
-  #hero-lights,
-  #hero-stars { display: none !important; }
-}
-
-/* ── تحسين الـ scroll على iOS ── */
-.surah-popup,
-.header ul,
-.azkar-grid,
-.huson-grid {
-  -webkit-overflow-scrolling: touch;
+  .hero-slide.active { opacity: 0.3 !important; }
+  #hero-dark-particles, #hero-lights, #hero-stars { display: none !important; }
 }
