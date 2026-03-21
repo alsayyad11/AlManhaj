@@ -42,7 +42,7 @@ body.dark {
 
 /* ══════════════════ RESET ══════════════════ */
 *,*::before,*::after{padding:0;margin:0;box-sizing:border-box;outline:none;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%;}
 ul,li{list-style:none;}
 a{text-decoration:none;}
 ::selection{color:#fff;background:var(--gold);}
@@ -56,6 +56,7 @@ body{
   background:var(--bg);
   color:var(--txt);
   overflow-x:hidden;
+  max-width:100%;
   transition:background .4s,color .4s;
 }
 
@@ -381,7 +382,7 @@ body:not(.dark) .main::before{
 }
 
 .main .container{flex:1;min-height:100vh;display:flex;align-items:center;position:relative;z-index:3;padding-top:80px;}
-.main .title{max-width:720px;}
+.main .title{max-width:720px;width:100%;}
 
 .hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:20px;animation:heroIn 1s .1s both;}
 .hero-eyebrow-line{height:1px;width:50px;background:linear-gradient(90deg,transparent,var(--gold));}
@@ -1566,14 +1567,16 @@ section:not(.main)::before{
 @media (max-width:1100px){
   .header .bars{display:flex;}
   .header ul{
-    position:fixed;top:0;right:-100%;height:100vh;width:270px;
+    position:fixed;top:0;right:0;height:100vh;width:min(270px, 85vw);
     background:rgba(11,22,35,.97);backdrop-filter:blur(24px);
-    flex-direction:column;padding:100px 28px 28px;gap:4px;
-    transition:right .42s cubic-bezier(.4,0,.2,1);
+    flex-direction:column;padding:90px 24px 28px;gap:4px;
+    /* transform بدل right لمنع horizontal overflow على الموبايل */
+    transform:translateX(110%);
+    transition:transform .38s cubic-bezier(.4,0,.2,1);
     border-left:1px solid rgba(201,168,76,.12);
     box-shadow:-12px 0 60px rgba(0,0,0,.5);z-index:998;overflow-y:auto;
   }
-  .header ul.active{right:0;}
+  .header ul.active{transform:translateX(0);}
   .header ul li{width:100%;text-align:center;padding:14px;font-size:15px;color:rgba(255,255,255,.9)!important;}
 
   .lectures-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
@@ -2675,4 +2678,123 @@ button, [data-filter], .surah, .hbook-tab, .huson-cat-btn,
   }
   .hero-slide.active { opacity: 0.3 !important; }
   #hero-dark-particles, #hero-lights, #hero-stars { display: none !important; }
+}
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║        OVERFLOW FIX + MOBILE LAYOUT CORRECTIONS             ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+/* ── الأساس: منع أي عنصر من تكسير العرض ── */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+/* ── كل section تاخد العرض الكامل بالظبط ── */
+section, .hero-stats-bar, .header, footer {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ── Hero: منع النص من الخروج ── */
+@media (max-width: 768px) {
+  .main { overflow: hidden; }
+  .main .container { padding-top: 70px; }
+  .main .title { max-width: 100%; padding: 0; }
+  .main .title h2 {
+    font-size: clamp(22px, 6.5vw, 40px) !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  .hero-sub {
+    font-size: clamp(13px, 3.5vw, 16px) !important;
+    word-break: break-word;
+    max-width: 100%;
+  }
+  .hero-buttons { flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn-gold, .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    font-size: 15px;
+    padding: 13px 20px;
+  }
+}
+
+/* ── Header full-width fix ── */
+@media (max-width: 1100px) {
+  .header { width: 100%; left: 0; right: 0; }
+  .header .container { padding: 0 16px; }
+  .header .logo { font-size: 36px; }
+}
+@media (max-width: 480px) {
+  .header .logo { font-size: 30px; }
+  .bars { width: 38px; height: 38px; }
+}
+
+/* ── إخفاء التأثيرات الثقيلة على الموبايل ── */
+@media (max-width: 768px) {
+  #hero-dark-particles,
+  #hero-lights,
+  #hero-stars { display: none !important; }
+  body:not(.dark)::before,
+  body.dark::before { display: none !important; }
+  .hero-slide.active { animation: none !important; }
+  .hero-slide { transition: opacity 1s ease-in-out !important; }
+  .pray-location-glow { animation: none !important; }
+}
+
+/* ── Section padding تقليل على الموبايل ── */
+@media (max-width: 768px) { section { padding: 60px 0 !important; } }
+@media (max-width: 480px) { section { padding: 44px 0 !important; } .section-header { margin-bottom: 28px; } }
+
+/* ── Container padding ── */
+@media (max-width: 768px) { .container { padding: 0 18px; } }
+@media (max-width: 420px) { .container { padding: 0 14px; } }
+
+/* ── Stats Bar ── */
+@media (max-width: 560px) {
+  .hero-stats-bar .container { flex-wrap: wrap; padding: 10px 12px; gap: 0; }
+  .hero-stat { padding: 6px 10px; }
+  .hero-stat-num { font-size: 16px; }
+  .hero-stat-label { font-size: 10px; }
+}
+@media (max-width: 380px) {
+  .hero-stat-divider { display: none; }
+  .hero-stat { width: 50%; justify-content: center; }
+}
+
+/* ── Prayer Cards ── */
+@media (max-width: 560px) { .pray-cards-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px; } }
+@media (max-width: 380px) { .pray-cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 7px; } }
+
+/* ── Tasbeeh ── */
+@media (max-width: 480px) { .tasbeeh-circle-wrap { width: 240px !important; height: 240px !important; } }
+@media (max-width: 360px) { .tasbeeh-circle-wrap { width: 200px !important; height: 200px !important; } }
+
+/* ── Touch UX ── */
+button, [data-filter], .surah, .hbook-tab, .azkar-toggle-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Quran Popup full-screen on mobile ── */
+@media (max-width: 600px) {
+  .surah-popup { border-radius: 0 !important; }
+  .mushaf-text { font-size: 20px !important; }
+}
+
+/* ── Footer ── */
+@media (max-width: 480px) {
+  .footer-logo { font-size: 36px; }
+  .footer-bottom-row { flex-direction: column; gap: 6px; text-align: center; font-size: 12px; }
+}
+
+/* ── Reduce motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
